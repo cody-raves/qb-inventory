@@ -2,6 +2,16 @@ QBCore = exports['qb-core']:GetCoreObject()
 PlayerData = nil
 local hotbarShown = false
 
+-- make CurrentDrop global so client/main.lua can see it
+CurrentDrop = nil
+
+-- back-compat for client/main.lua
+-- If you added the server sync event (below), use that:
+function GetDrops()
+    -- ask the server to (re)send every stack with its correct model
+    TriggerServerEvent('itemdrops:server:syncAllStacks')
+end
+
 -- Handlers
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
