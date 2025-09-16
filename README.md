@@ -1,5 +1,5 @@
 # qb-inventory (enhanced fork)
-![image](https://github.com/user-attachments/assets/01166470-4e1a-4d7b-808a-ed3de1133daa)
+![image]([https://i.ibb.co/HfQ4y2rX/20250916044417-1.jpg])
 forked from https://github.com/ItzMuri/qb-inventory
 
 ## Dependencies
