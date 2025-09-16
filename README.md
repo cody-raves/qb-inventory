@@ -1,5 +1,5 @@
 # qb-inventory (enhanced fork)
-https://i.ibb.co/HfQ4y2rX/20250916044417-1.jpg
+![In-game screenshot](https://i.ibb.co/HfQ4y2rX/20250916044417-1.jpg)
 forked from https://github.com/ItzMuri/qb-inventory
 
 ## Dependencies
