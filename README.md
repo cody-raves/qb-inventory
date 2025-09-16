@@ -16,19 +16,19 @@ forked from https://github.com/ItzMuri/qb-inventory
 ## 
 ## Whats new in this fork
 
-- Clustered world drops
+- Clustered world drops:
 Items dropped near each other are pooled into a single stash (“drop-xxxxx”) based on a radius.
 
-- Per-item world props
+- Per-item world props:
   Each stack spawns a relevant 3D prop (phone, ammo box, bottle, etc.) instead of a generic bag.
 
-- qb-target integration
+- qb-target integration:
 Walk up to the prop and choose: Pick up (xN) or Open stash.
 
-- Persistence across restarts
+- Persistence across restarts:
 Drops and their stacks are saved to SQL and restored on resource/server start.
 
-- Auto schema
+- Auto schema:
 SQL tables for persistent drops are created automatically.
 
 ## Documentation
