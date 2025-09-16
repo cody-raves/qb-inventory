@@ -13,7 +13,7 @@ forked from https://github.com/ItzMuri/qb-inventory
 - Shops
 - Item Drops
 - 
-## ______________________
+## 
 ## Whats new in this fork
 
 - Clustered world drops
