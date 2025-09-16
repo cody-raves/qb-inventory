@@ -12,7 +12,7 @@ forked from https://github.com/ItzMuri/qb-inventory
 - Weapon Attachments
 - Shops
 - Item Drops
-- 
+
 ## 
 ## Whats new in this fork
 
