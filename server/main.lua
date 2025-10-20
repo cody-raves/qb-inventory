@@ -15,10 +15,325 @@ Config.FallbackModel     = Config.FallbackModel     or `prop_paper_bag_small`
 
 -- Item name (lowercase) -> GTA model. Extend as you like.
 ItemModels = ItemModels or {
-    phone         = `prop_npc_phone_02`,
+    advancedlockpick = `prop_cs_package_01`,
+    advancedrepairkit = `prop_tool_adjspanner`,
+    advscope_attachment = `prop_box_guncase_02a`,
+    aluminum = `prop_ld_scrap`,
+    aluminumoxide = `prop_ld_scrap`,
+    antipatharia_coral = `prop_cs_package_01`,
+    armor = `prop_armor_pickup`,
+    attachment_bench = `prop_cs_package_01`,
+    bandage = `prop_ld_health_pack`,
+    bank_card = `prop_ld_keypad_01`,
+    barrel_attachment = `prop_box_guncase_02a`,
+    beer = `prop_beer_bottle`,
+    bellend_muzzle_brake = `prop_box_guncase_02a`,
+    binoculars = `prop_cs_package_01`,
+    boomcamo_attachment = `prop_box_guncase_02a`,
+    brushcamo_attachment = `prop_box_guncase_02a`,
+    casinochips = `prop_cash_pile_01`,
+    certificate = `prop_ld_purse_01`,
+    cleaningkit = `prop_cs_package_01`,
+    clip_attachment = `prop_box_guncase_02a`,
+    coffee = `prop_vend_coffe_01`,
+    coke_brick = `prop_meth_bag_01`,
+    coke_small_brick = `prop_meth_bag_01`,
+    cokebaggy = `prop_cs_heist_bag_02`,
+    comp_attachment = `prop_box_guncase_02a`,
+    copper = `prop_ld_scrap`,
+    crack_baggy = `prop_cs_heist_bag_02`,
+    cryptostick = `prop_cs_usb_drive`,
+    dendrogyra_coral = `prop_cs_package_01`,
+    digicamo_attachment = `prop_box_guncase_02a`,
+    diving_fill = `p_s_scuba_mask_s`,
+    diving_gear = `p_s_scuba_tank_s`,
+    drill = `hei_prop_heist_drill`,
+    driver_license = `prop_ld_purse_01`,
+    drum_attachment = `prop_box_guncase_02a`,
+    electronickit = `prop_cs_usb_drive`,
+    emp_ammo = `prop_ld_ammo_pack_01`,
+    empty_evidence_bag = `prop_cs_heist_bag_02`,
+    empty_weed_bag = `prop_cs_package_01`,
+    fat_end_muzzle_brake = `prop_box_guncase_02a`,
+    filled_evidence_bag = `prop_cs_heist_bag_02`,
+    firework1 = `ind_prop_firework_01`,
+    firework2 = `ind_prop_firework_01`,
+    firework3 = `ind_prop_firework_01`,
+    firework4 = `ind_prop_firework_01`,
+    firstaid = `prop_ld_health_pack`,
+    fitbit = `prop_cs_package_01`,
+    flashlight_attachment = `prop_box_guncase_02a`,
+    flat_muzzle_brake = `prop_box_guncase_02a`,
+    gatecrack = `prop_cs_package_01`,
+    geocamo_attachment = `prop_box_guncase_02a`,
+    glass = `prop_rub_scrap_06`,
+    goldbar = `prop_rub_scrap_06`,
+    goldchain = `prop_gold_bar`,
+    grapejuice = `prop_juicestand`,
+    grip_attachment = `prop_box_guncase_02a`,
+    harness = `p_mrk_harness_s`,
+    heavy_duty_muzzle_brake = `prop_box_guncase_02a`,
+    heavyarmor = `prop_armor_pickup`,
+    holoscope_attachment = `prop_box_guncase_02a`,
+    id_card = `p_ld_id_card_01`,
+    ifaks = `prop_ld_health_pack`,
+    iphone = `prop_phone_ing`,
+    iron = `prop_rub_scrap_06`,
+    ironoxide = `prop_rub_scrap_06`,
+    item_bench = `prop_cs_package_01`,
+    jerry_can = `w_am_jerrycan`,
+    joint = `prop_weed_bottle`,
+    kurkakola = `prop_vend_soda_01`,
+    labkey = `prop_ld_keypad_01`,
+    laptop = `prop_laptop_lester2`,
+    largescope_attachment = `prop_box_guncase_02a`,
+    lawyerpass = `prop_cs_package_01`,
+    leopardcamo_attachment = `prop_box_guncase_02a`,
+    lighter = `p_cs_lighter_01`,
+    lockpick = `prop_tool_adjspanner`,
+    luxuryfinish_attachment = `prop_box_guncase_02a`,
+    markedbills = `prop_cash_pile_02`,
+    medscope_attachment = `prop_box_guncase_02a`,
+    metalscrap = `prop_ld_scrap`,
+    meth = `prop_meth_bag_01`,
+    mg_ammo = `prop_ld_ammo_pack_01`,
+    moneybag = `prop_cs_heist_bag_02`,
+    newsbmic = `prop_cs_package_01`,
+    newscam = `prop_cs_package_01`,
+    newsmic = `prop_cs_package_01`,
+    nitrous = `prop_byard_gas`,
+    nvscope_attachment = `prop_box_guncase_02a`,
+    oxy = `prop_meth_bag_01`,
+    painkillers = `prop_cs_pills`,
+    parachute = `p_parachute_s`,
+    patriotcamo_attachment = `prop_box_guncase_02a`,
+    perseuscamo_attachment = `prop_box_guncase_02a`,
+    phone = `prop_phone_ing`,
+    pinger = `prop_cs_usb_drive`,
+    pistol_ammo = `prop_ld_ammo_pack_01`,
+    plastic = `prop_ld_scrap`,
+    police_stormram = `prop_cs_package_01`,
+    precision_muzzle_brake = `prop_box_guncase_02a`,
+    printerdocument = `prop_ld_purse_01`,
+    radio = `prop_cs_hand_radio`,
+    radioscanner = `prop_cs_usb_drive`,
+    repairkit = `prop_tool_adjspanner`,
+    rifle_ammo = `prop_ld_ammo_pack_01`,
+    rolex = `prop_gold_bar`,
+    rolling_paper = `prop_cs_package_01`,
+    rubber = `prop_ld_scrap`,
+    samsungphone = `prop_cs_package_01`,
+    sandwich = `prop_cs_burger_01`,
+    screwdriverset = `prop_tool_adjspanner`,
+    security_card_01 = `prop_ld_keypad_01`,
+    security_card_02 = `prop_ld_keypad_01`,
+    sessantacamo_attachment = `prop_box_guncase_02a`,
+    shotgun_ammo = `prop_ld_ammo_pack_01`,
+    skullcamo_attachment = `prop_box_guncase_02a`,
+    slanted_muzzle_brake = `prop_box_guncase_02a`,
+    smallscope_attachment = `prop_box_guncase_02a`,
+    smg_ammo = `prop_ld_ammo_pack_01`,
+    snikkel_candy = `prop_vend_soda_01`,
+    snp_ammo = `prop_ld_ammo_pack_01`,
+    split_end_muzzle_brake = `prop_box_guncase_02a`,
+    squared_muzzle_brake = `prop_box_guncase_02a`,
+    steel = `prop_ld_scrap`,
+    stickynote = `prop_notepad_01`,
+    suppressor_attachment = `prop_box_guncase_02a`,
+    tablet = `prop_cs_tablet`,
+    tactical_muzzle_brake = `prop_box_guncase_02a`,
+    tenkgoldchain = `prop_gold_bar`,
+    thermalscope_attachment = `prop_box_guncase_02a`,
+    thermite = `prop_cs_gascutter_1`,
+    tirerepairkit = `prop_tool_adjspanner`,
+    tosti = `prop_cs_burger_01`,
+    trojan_usb = `prop_cs_usb_drive`,
+    tunerlaptop = `prop_cs_tablet`,
+    twerks_candy = `prop_vend_soda_01`,
+    veh_armor = `prop_tool_box_01`,
+    veh_brakes = `prop_tool_box_01`,
+    veh_engine = `prop_tool_box_01`,
+    veh_exterior = `prop_tool_box_01`,
+    veh_interior = `prop_tool_box_01`,
+    veh_neons = `prop_tool_box_01`,
+    veh_plates = `prop_tool_box_01`,
+    veh_suspension = `prop_tool_box_01`,
+    veh_tint = `prop_tool_box_01`,
+    veh_toolbox = `prop_tool_box_01`,
+    veh_transmission = `prop_tool_box_01`,
+    veh_turbo = `prop_tool_box_01`,
+    veh_wheels = `prop_tool_box_01`,
+    veh_xenons = `prop_tool_box_01`,
+    vodka = `prop_wine_bot_01`,
+    walkstick = `prop_cs_package_01`,
+    water_bottle = `prop_ld_flow_bottle`,
+    weapon_advancedrifle = `w_ar_advancedrifle`,
+    weapon_appistol = `w_pi_appistol`,
+    weapon_assaultrifle = `w_pi_pistol`,
+    weapon_assaultrifle_mk2 = `w_ar_assaultrifle`,
+    weapon_assaultshotgun = `w_sg_assaultshotgun`,
+    weapon_assaultsmg = `w_pi_pistol`,
+    weapon_autoshotgun = `w_sg_sweeper`,
+    weapon_ball = `w_am_baseball`,
+    weapon_bat = `w_pi_pistol`,
+    weapon_battleaxe = `w_me_battleaxe`,
+    weapon_bottle = `w_pi_pistol`,
+    weapon_bread = `w_pi_pistol`,
+    weapon_briefcase = `w_pi_pistol`,
+    weapon_briefcase_02 = `w_pi_pistol`,
+    weapon_bullpuprifle = `w_ar_bullpuprifle`,
+    weapon_bullpuprifle_mk2 = `w_ar_bullpuprifle`,
+    weapon_bullpupshotgun = `w_pi_pistol`,
+    weapon_bzgas = `w_ex_bzgas`,
+    weapon_candycane = `w_pi_pistol`,
+    weapon_carbinerifle = `w_ar_carbinerifle`,
+    weapon_carbinerifle_mk2 = `w_ar_carbinerifle`,
+    weapon_ceramicpistol = `w_pi_ceramic_pistol`,
+    weapon_combatmg = `w_mg_combatmg`,
+    weapon_combatmg_mk2 = `w_mg_combatmg`,
+    weapon_combatpdw = `w_sb_pdw`,
+    weapon_combatpistol = `w_pi_combatpistol`,
+    weapon_combatshotgun = `w_pi_pistol`,
+    weapon_compactlauncher = `w_pi_pistol`,
+    weapon_compactrifle = `w_pi_pistol`,
+    weapon_crowbar = `w_me_crowbar`,
+    weapon_dagger = `w_pi_pistol`,
+    weapon_dbshotgun = `w_sg_doublebarrel`,
+    weapon_doubleaction = `w_pi_pistol`,
+    weapon_fireextinguisher = `w_am_fire_exting`,
+    weapon_firework = `w_pi_pistol`,
+    weapon_flare = `w_am_flare`,
+    weapon_flaregun = `w_pi_flaregun`,
+    weapon_flashlight = `w_pi_pistol`,
+    weapon_gadgetpistol = `w_pi_pistol`,
+    weapon_garbagebag = `w_pi_pistol`,
+    weapon_golfclub = `w_me_gclub`,
+    weapon_grenade = `w_ex_grenadefrag`,
+    weapon_grenadelauncher = `w_ex_grenadefrag`,
+    weapon_grenadelauncher_smoke = `w_ex_grenadefrag`,
+    weapon_gusenberg = `w_sb_gusenberg`,
+    weapon_hammer = `w_me_hammer`,
+    weapon_handcuffs = `w_pi_pistol`,
+    weapon_hatchet = `w_me_hatchet`,
+    weapon_hazardcan = `w_am_jerrycan`,
+    weapon_heavypistol = `w_pi_pistol`,
+    weapon_heavyshotgun = `w_sg_heavyshotgun`,
+    weapon_heavysniper = `w_sr_heavysniper`,
+    weapon_heavysniper_mk2 = `w_sr_heavysniper`,
+    weapon_hominglauncher = `w_pi_pistol`,
+    weapon_knife = `w_me_knife_01`,
+    weapon_knuckle = `w_pi_pistol`,
+    weapon_machete = `w_me_machette_lr`,
+    weapon_machinepistol = `w_pi_pistol`,
+    weapon_marksmanpistol = `w_pi_singleshot`,
+    weapon_marksmanrifle = `w_sr_marksmanrifle`,
+    weapon_marksmanrifle_mk2 = `w_sr_marksmanrifle`,
+    weapon_mg = `w_mg_mg`,
+    weapon_microsmg = `w_sb_microsmg`,
+    weapon_militaryrifle = `w_ar_assaultrifle`,
+    weapon_minigun = `w_mg_minigun`,
+    weapon_minismg = `w_sb_minismg`,
+    weapon_molotov = `w_ex_molotov`,
+    weapon_musket = `w_ar_musket`,
+    weapon_navyrevolver = `w_pi_pistol`,
+    weapon_nightstick = `w_me_nightstick`,
+    weapon_petrolcan = `w_am_jerrycan`,
+    weapon_pipebomb = `w_pi_pistol`,
     weapon_pistol = `w_pi_pistol`,
-    pistol_ammo   = `prop_ld_ammo_pack_01`,
-    water_bottle  = `prop_ld_flow_bottle`,
+    weapon_pistol50 = `w_pi_pistol50`,
+    weapon_pistol_mk2 = `w_pi_pistol`,
+    weapon_pistolxm3 = `w_pi_pistol`,
+    weapon_poolcue = `w_me_poolcue`,
+    weapon_proxmine = `w_ex_apmine`,
+    weapon_pumpshotgun = `w_sg_pumpshotgun`,
+    weapon_pumpshotgun_mk2 = `w_sg_pumpshotgun`,
+    weapon_railgun = `w_ar_railgun`,
+    weapon_railgunxm3 = `w_ar_railgun`,
+    weapon_raycarbine = `w_ar_srifle`,
+    weapon_rayminigun = `w_mg_minigun`,
+    weapon_raypistol = `w_pi_raygun`,
+    weapon_remotesniper = `w_pi_pistol`,
+    weapon_revolver = `w_pi_revolver`,
+    weapon_revolver_mk2 = `w_pi_revolver`,
+    weapon_rpg = `w_pi_pistol`,
+    weapon_sawnoffshotgun = `w_sg_sawnoff`,
+    weapon_smg = `w_sb_smg`,
+    weapon_smg_mk2 = `w_sb_smg`,
+    weapon_smokegrenade = `w_pi_pistol`,
+    weapon_sniperrifle = `w_sr_sniperrifle`,
+    weapon_snowball = `w_ex_snowball`,
+    weapon_snspistol = `w_pi_pistol`,
+    weapon_snspistol_mk2 = `w_pi_pistol`,
+    weapon_specialcarbine = `w_ar_specialcarbine`,
+    weapon_specialcarbine_mk2 = `w_ar_specialcarbine`,
+    weapon_stickybomb = `w_ex_pe`,
+    weapon_stone_hatchet = `w_me_hatchet`,
+    weapon_stungun = `w_pi_stungun`,
+    weapon_switchblade = `w_me_switchblade`,
+    weapon_unarmed = `w_me_fist`,
+    weapon_vintagepistol = `w_pi_vintage_pistol`,
+    weapon_wrench = `w_me_wrench`,
+    weaponlicense = `prop_ld_purse_01`,
+    weapontint_0 = `prop_cs_package_01`,
+    weapontint_1 = `prop_cs_package_01`,
+    weapontint_2 = `prop_cs_package_01`,
+    weapontint_3 = `prop_cs_package_01`,
+    weapontint_4 = `prop_cs_package_01`,
+    weapontint_5 = `prop_cs_package_01`,
+    weapontint_6 = `prop_cs_package_01`,
+    weapontint_7 = `prop_cs_package_01`,
+    weapontint_mk2_0 = `prop_cs_package_01`,
+    weapontint_mk2_1 = `prop_cs_package_01`,
+    weapontint_mk2_10 = `prop_cs_package_01`,
+    weapontint_mk2_11 = `prop_cs_package_01`,
+    weapontint_mk2_12 = `prop_cs_package_01`,
+    weapontint_mk2_13 = `prop_cs_package_01`,
+    weapontint_mk2_14 = `prop_cs_package_01`,
+    weapontint_mk2_15 = `prop_cs_package_01`,
+    weapontint_mk2_16 = `prop_cs_package_01`,
+    weapontint_mk2_17 = `prop_cs_package_01`,
+    weapontint_mk2_18 = `prop_cs_package_01`,
+    weapontint_mk2_19 = `prop_cs_package_01`,
+    weapontint_mk2_2 = `prop_cs_package_01`,
+    weapontint_mk2_20 = `prop_cs_package_01`,
+    weapontint_mk2_21 = `prop_cs_package_01`,
+    weapontint_mk2_22 = `prop_cs_package_01`,
+    weapontint_mk2_23 = `prop_cs_package_01`,
+    weapontint_mk2_24 = `prop_cs_package_01`,
+    weapontint_mk2_25 = `prop_cs_package_01`,
+    weapontint_mk2_26 = `prop_cs_package_01`,
+    weapontint_mk2_27 = `prop_cs_package_01`,
+    weapontint_mk2_28 = `prop_cs_package_01`,
+    weapontint_mk2_29 = `prop_cs_package_01`,
+    weapontint_mk2_3 = `prop_cs_package_01`,
+    weapontint_mk2_30 = `prop_cs_package_01`,
+    weapontint_mk2_31 = `prop_cs_package_01`,
+    weapontint_mk2_32 = `prop_cs_package_01`,
+    weapontint_mk2_4 = `prop_cs_package_01`,
+    weapontint_mk2_5 = `prop_cs_package_01`,
+    weapontint_mk2_6 = `prop_cs_package_01`,
+    weapontint_mk2_7 = `prop_cs_package_01`,
+    weapontint_mk2_8 = `prop_cs_package_01`,
+    weapontint_mk2_9 = `prop_cs_package_01`,
+    weed_ak47 = `prop_meth_bag_01`,
+    weed_ak47_seed = `prop_meth_bag_01`,
+    weed_amnesia = `prop_meth_bag_01`,
+    weed_amnesia_seed = `prop_meth_bag_01`,
+    weed_brick = `prop_meth_bag_01`,
+    weed_nutrition = `prop_meth_bag_01`,
+    weed_ogkush = `prop_meth_bag_01`,
+    weed_ogkush_seed = `prop_meth_bag_01`,
+    weed_purplehaze = `prop_meth_bag_01`,
+    weed_purplehaze_seed = `prop_meth_bag_01`,
+    weed_skunk = `prop_meth_bag_01`,
+    weed_skunk_seed = `prop_meth_bag_01`,
+    weed_whitewidow = `prop_meth_bag_01`,
+    weed_whitewidow_seed = `prop_meth_bag_01`,
+    whiskey = `prop_ld_keypad_01`,
+    wine = `prop_wine_bot_01`,
+    woodcamo_attachment = `prop_box_guncase_02a`,
+    xtcbaggy = `prop_cs_heist_bag_02`,
+    zebracamo_attachment = `prop_box_guncase_02a`,
 }
 
 -- Helpers
@@ -885,58 +1200,162 @@ local function getIdentifier(inventoryId, src)
 end
 
 RegisterNetEvent('qb-inventory:server:SetInventoryData', function(fromInventory, toInventory, fromSlot, toSlot, fromAmount, toAmount)
-    if toInventory:find('shop%-') then return end
-    if not fromInventory or not toInventory or not fromSlot or not toSlot or not fromAmount or not toAmount or fromAmount < 0 or toAmount < 0 then return end
+    -- ignore shop moves
+    if type(toInventory) == 'string' and toInventory:find('shop%-') then return end
+
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     if not Player then return end
 
-    fromSlot, toSlot, fromAmount, toAmount = tonumber(fromSlot), tonumber(toSlot), tonumber(fromAmount), tonumber(toAmount)
+    -- Normalize inputs but DON'T hard-fail on nils (UI sometimes omits)
+    fromSlot   = tonumber(fromSlot)
+    toSlot     = tonumber(toSlot)          -- may be nil when dragging into world drop
+    fromAmount = tonumber(fromAmount) or 0
+    toAmount   = tonumber(toAmount)   or 0
+
+    if not fromInventory or not toInventory or not fromSlot then return end
+    if fromAmount < 0 or toAmount < 0 then return end
+
+    -- === custom path: moving FROM player TO a cluster drop ===
+    if fromInventory == 'player' and type(toInventory) == 'string' and toInventory:find('drop%-') == 1 then
+        local dropId = toInventory
+        local drop   = Drops[dropId]
+
+        if not drop then
+            local pcoords = GetEntityCoords(GetPlayerPed(src))
+            drop = {
+                name        = dropId,
+                label       = 'Drop',
+                createdTime = os.time(),
+                coords      = pcoords,
+                maxweight   = Config.DropSize.maxweight,
+                slots       = Config.DropSize.slots,
+                isOpen      = true,
+                stacks      = {}
+            }
+            Drops[dropId] = drop
+            if DBSaveCluster then DBSaveCluster(dropId, pcoords) end
+        end
+
+        local fromItem = getItem('player', src, fromSlot)
+        if not fromItem then return end
+
+        -- prefer explicit fromAmount; fall back to toAmount; else full stack
+        local moveAmount = (fromAmount > 0 and fromAmount) or (toAmount > 0 and toAmount) or (fromItem.amount or 0)
+        moveAmount = math.max(0, math.min(moveAmount, fromItem.amount or 0))
+        if moveAmount <= 0 then return end
+
+        -- proximity (centroid or any stack)
+        local ped, pcoords = GetPlayerPed(src), GetEntityCoords(GetPlayerPed(src))
+        local near = (drop.coords and #(pcoords - drop.coords) <= 3.0)
+        if not near and drop.stacks then
+            for _, s in pairs(drop.stacks) do
+                if s.coords and #(pcoords - s.coords) <= 3.0 then near = true break end
+            end
+        end
+        if not near then
+            TriggerClientEvent('QBCore:Notify', src, 'Too far from drop.', 'error')
+            return
+        end
+
+        if not RemoveItem(src, fromItem.name, moveAmount, fromSlot, 'drop into world cluster') then
+            return
+        end
+        if fromItem.type == 'weapon' then checkWeapon(src, fromItem) end
+
+        -- merge by name + exact meta (info)
+        local function sameMeta(a, b) return json.encode(a or {}) == json.encode(b or {}) end
+        local merged = false
+        for sid, st in pairs(drop.stacks or {}) do
+            if st.item and string.lower(st.item.name) == string.lower(fromItem.name)
+               and sameMeta(st.item.metadata or st.item.info, fromItem.info) then
+                st.item.amount = (st.item.amount or 0) + moveAmount
+                if DBSaveStack then DBSaveStack(dropId, sid, st) end
+                merged = true
+                break
+            end
+        end
+
+        if not merged then
+            local mdl  = ItemModels[string.lower(fromItem.name)] or (Config.FallbackModel or `prop_cs_package_01`)
+            local base = drop.coords or pcoords
+            local ang  = math.random() * math.pi * 2
+            local rad  = (Config.DropClusterRadius or 1.5) * (0.45 + math.random() * 0.55)
+            local pos  = vector3(base.x + math.cos(ang) * rad, base.y + math.sin(ang) * rad, base.z)
+
+            local stackId = ('stack-%d'):format(math.random(100000, 999999))
+            drop.stacks[stackId] = {
+                item   = { name = fromItem.name, amount = moveAmount, type = fromItem.type, info = fromItem.info, metadata = fromItem.info },
+                coords = pos,
+                model  = mdl,
+            }
+            if DBSaveStack then DBSaveStack(dropId, stackId, drop.stacks[stackId]) end
+
+            TriggerClientEvent('itemdrops:client:spawnProp', -1, {
+                stackId   = stackId,
+                clusterId = dropId,
+                item      = { name = fromItem.name, amount = moveAmount, type = fromItem.type, info = fromItem.info, metadata = fromItem.info },
+                coords    = { x = pos.x, y = pos.y, z = pos.z },
+                model     = mdl,
+            })
+        end
+
+        -- 🔄 re-open the drop with updated contents so more drags are accepted
+        local items = buildClusterInventory(drop)
+        local formatted = {
+            name      = dropId,
+            label     = dropId,
+            maxweight = drop.maxweight or Config.DropSize.maxweight,
+            slots     = math.max(#items, drop.slots or Config.DropSize.slots or 40),
+            inventory = items
+        }
+        TriggerClientEvent('qb-inventory:client:openInventory', src, Player.PlayerData.items, formatted)
+
+        -- also refresh player's side
+        TriggerClientEvent('qb-inventory:client:updateInventory', src)
+        return
+    end
 
     -- === custom path: moving FROM a cluster drop TO player ===
     if type(fromInventory) == 'string' and fromInventory:find('drop%-') == 1 and toInventory == 'player' then
         local drop = Drops[fromInventory]
         if not drop then return end
 
-        -- use the same view we gave the UI and resolve the clicked slot
         local list = buildClusterInventory(drop)
         local disp = list[fromSlot]
         if not disp then return end
 
-        local moveAmount = tonumber(toAmount) or tonumber(fromAmount) or disp.amount or 0
+        -- prefer toAmount (what UI intends to take), else fromAmount, else whatever’s there
+        local moveAmount = (toAmount > 0 and toAmount) or (fromAmount > 0 and fromAmount) or (disp.amount or 0)
         moveAmount = math.max(0, math.min(moveAmount, disp.amount or 0))
         if moveAmount == 0 then return end
 
-        -- capacity check
         if not CanAddItem(src, disp.name, moveAmount) then
             TriggerClientEvent('QBCore:Notify', src, 'Cannot hold item', 'error')
             return
         end
 
-        -- consume from cluster stacks (also persists)
-        local ok = consumeFromCluster(fromInventory, disp.name, disp.metadata or disp.info, moveAmount)
+        local ok = consumeFromCluster(fromInventory, disp.name, (disp.metadata or disp.info), moveAmount)
         if not ok then
             TriggerClientEvent('QBCore:Notify', src, 'Not enough in stash', 'error')
             return
         end
 
         AddItem(src, disp.name, moveAmount, toSlot, disp.info or disp.metadata, 'pickup world stash')
-
-        -- refresh player side quickly
         TriggerClientEvent('qb-inventory:client:updateInventory', src)
         return
     end
 
-    -- === original logic (player <-> player, stash, etc.) ===
+    -- === original logic (player <-> player, named stashes, trunks, etc.) ===
     local fromItem = getItem(fromInventory, src, fromSlot)
-    local toItem = getItem(toInventory, src, toSlot)
+    local toItem   = getItem(toInventory,   src, toSlot)
 
     if fromItem then
         if not toItem and toAmount > fromItem.amount then return end
         if fromInventory == 'player' and toInventory ~= 'player' then checkWeapon(src, fromItem) end
 
         local fromId = getIdentifier(fromInventory, src)
-        local toId = getIdentifier(toInventory, src)
+        local toId   = getIdentifier(toInventory,   src)
 
         if toItem and fromItem.name == toItem.name then
             if RemoveItem(fromId, fromItem.name, toAmount, fromSlot, 'stacked item') then
@@ -949,11 +1368,12 @@ RegisterNetEvent('qb-inventory:server:SetInventoryData', function(fromInventory,
         else
             if toItem then
                 local fromItemAmount = fromItem.amount
-                local toItemAmount = toItem.amount
+                local toItemAmount   = toItem.amount
 
-                if RemoveItem(fromId, fromItem.name, fromItemAmount, fromSlot, 'swapped item') and RemoveItem(toId, toItem.name, toItemAmount, toSlot, 'swapped item') then
-                    AddItem(toId, fromItem.name, fromItemAmount, toSlot, fromItem.info, 'swapped item')
-                    AddItem(fromId, toItem.name, toItemAmount, fromSlot, toItem.info, 'swapped item')
+                if RemoveItem(fromId, fromItem.name, fromItemAmount, fromSlot, 'swapped item')
+                and RemoveItem(toId,   toItem.name, toItemAmount,   toSlot,   'swapped item') then
+                    AddItem(toId,   fromItem.name, fromItemAmount, toSlot,   fromItem.info, 'swapped item')
+                    AddItem(fromId, toItem.name,   toItemAmount,   fromSlot, toItem.info,   'swapped item')
                 end
             else
                 if RemoveItem(fromId, fromItem.name, toAmount, fromSlot, 'moved item') then
@@ -963,6 +1383,8 @@ RegisterNetEvent('qb-inventory:server:SetInventoryData', function(fromInventory,
         end
     end
 end)
+
+
 
 -- ==========================================
 -- NEW: Single-stack pickup & open via target
