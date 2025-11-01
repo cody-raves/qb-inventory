@@ -1,4 +1,4 @@
--- server/main.lua
+-- server/main.lua (drops persistence removed)
 
 QBCore = exports['qb-core']:GetCoreObject()
 Inventories = {}
@@ -142,7 +142,7 @@ ItemModels = ItemModels or {
     tactical_muzzle_brake = `prop_box_guncase_02a`,
     tenkgoldchain = `prop_gold_bar`,
     thermalscope_attachment = `prop_box_guncase_02a`,
-    thermite = `hei_prop_heist_thermite`, 
+    thermite = `hei_prop_heist_thermite`,
     tirerepairkit = `prop_tool_box_02`,
     tosti = `prop_cs_burger_01`,
     trojan_usb = `prop_cs_usb_drive`,
@@ -162,7 +162,7 @@ ItemModels = ItemModels or {
     veh_turbo = `prop_tool_box_01`,
     veh_wheels = `prop_tool_box_01`,
     veh_xenons = `prop_tool_box_01`,
-    vodka = `prop_vodka_bottle`,                   
+    vodka = `prop_vodka_bottle`,
     walkstick = `prop_cs_package_01`,
     water_bottle = `prop_ld_flow_bottle`,
     weapon_advancedrifle = `w_ar_advancedrifle`,
@@ -419,137 +419,16 @@ local function buildClusterInventory(cluster)
 end
 
 -- =====================================================
--- PERSISTENCE (DB): auto-create tables and save/load ops
+-- DROPS PERSISTENCE (DB): DISABLED (NO-OPS)
 -- =====================================================
 
-local DROP_DB = {
-    clusters = 'inventory_drop_clusters',
-    stacks   = 'inventory_drop_stacks',
-}
-
--- Create tables if they don't exist
-local function DBEnsureSchema()
-    local sqlClusters = [[
-        CREATE TABLE IF NOT EXISTS `]] .. DROP_DB.clusters .. [[` (
-          `cluster_id` VARCHAR(32) NOT NULL,
-          `x` DOUBLE NOT NULL,
-          `y` DOUBLE NOT NULL,
-          `z` DOUBLE NOT NULL,
-          `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          PRIMARY KEY (`cluster_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-    ]]
-
-    local sqlStacks = [[
-        CREATE TABLE IF NOT EXISTS `]] .. DROP_DB.stacks .. [[` (
-          `stack_id`   VARCHAR(32) NOT NULL,
-          `cluster_id` VARCHAR(32) NOT NULL,
-          `item_name`  VARCHAR(64) NOT NULL,
-          `amount`     INT NOT NULL DEFAULT 1,
-          `item_type`  VARCHAR(32) NOT NULL,
-          `info_json`      LONGTEXT NULL,
-          `metadata_json`  LONGTEXT NULL,
-          `x` DOUBLE NOT NULL,
-          `y` DOUBLE NOT NULL,
-          `z` DOUBLE NOT NULL,
-          `model` BIGINT UNSIGNED NOT NULL,
-          `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-          PRIMARY KEY (`stack_id`),
-          KEY `idx_cluster_id` (`cluster_id`),
-          CONSTRAINT `fk_drop_cluster` FOREIGN KEY (`cluster_id`)
-            REFERENCES `]] .. DROP_DB.clusters .. [[` (`cluster_id`)
-            ON DELETE CASCADE ON UPDATE CASCADE
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-    ]]
-
-    MySQL.query.await(sqlClusters)
-    MySQL.query.await(sqlStacks)
-    print('[drops] schema ensured (clusters + stacks)')
-end
-
-local function DBSaveCluster(clusterId, coords)
-    MySQL.prepare(
-        ('INSERT INTO %s (cluster_id, x, y, z) VALUES (?, ?, ?, ?) ' ..
-         'ON DUPLICATE KEY UPDATE x = VALUES(x), y = VALUES(y), z = VALUES(z)')
-        :format(DROP_DB.clusters),
-        { clusterId, coords.x + 0.0, coords.y + 0.0, coords.z + 0.0 }
-    )
-end
-
-local function DBSaveStack(clusterId, stackId, s)
-    MySQL.prepare(
-        ('INSERT INTO %s (stack_id, cluster_id, item_name, amount, item_type, info_json, metadata_json, x, y, z, model) ' ..
-         'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ' ..
-         'ON DUPLICATE KEY UPDATE amount = VALUES(amount), x = VALUES(x), y = VALUES(y), z = VALUES(z), model = VALUES(model)')
-        :format(DROP_DB.stacks),
-        {
-            stackId, clusterId,
-            s.item.name, tonumber(s.item.amount) or 1, (s.item.type or 'item'),
-            json.encode(s.item.info or {}), json.encode(s.item.metadata or {}),
-            s.coords.x + 0.0, s.coords.y + 0.0, s.coords.z + 0.0,
-            tonumber(s.model) or 0
-        }
-    )
-end
-
-local function DBDeleteStack(stackId)
-    MySQL.prepare(('DELETE FROM %s WHERE stack_id = ?'):format(DROP_DB.stacks), { stackId })
-end
-
-local function DBDeleteCluster(clusterId)
-    MySQL.prepare(('DELETE FROM %s WHERE cluster_id = ?'):format(DROP_DB.clusters), { clusterId })
-end
-
-local function DBLoadAllDrops()
-    local clusters = MySQL.query.await(('SELECT * FROM %s'):format(DROP_DB.clusters)) or {}
-    local stacks   = MySQL.query.await(('SELECT * FROM %s'):format(DROP_DB.stacks))   or {}
-
-    -- Build clusters first
-    for _, c in ipairs(clusters) do
-        Drops[c.cluster_id] = {
-            name        = c.cluster_id,
-            label       = 'Drop',
-            createdTime = os.time(),
-            coords      = vector3(c.x + 0.0, c.y + 0.0, c.z + 0.0),
-            maxweight   = Config.DropSize.maxweight,
-            slots       = Config.DropSize.slots,
-            isOpen      = false,
-            stacks      = {}
-        }
-    end
-
-    -- Then stacks
-    for _, s in ipairs(stacks) do
-        local cid = s.cluster_id
-        if not Drops[cid] then
-            Drops[cid] = {
-                name        = cid,
-                label       = 'Drop',
-                createdTime = os.time(),
-                coords      = vector3(s.x + 0.0, s.y + 0.0, s.z + 0.0),
-                maxweight   = Config.DropSize.maxweight,
-                slots       = Config.DropSize.slots,
-                isOpen      = false,
-                stacks      = {}
-            }
-            DBSaveCluster(cid, Drops[cid].coords)
-        end
-
-        Drops[cid].stacks[s.stack_id] = {
-            item = {
-                name     = s.item_name,
-                amount   = s.amount,
-                type     = s.item_type,
-                info     = json.decode(s.info_json  or '{}'),
-                metadata = json.decode(s.metadata_json or '{}'),
-            },
-            coords = vector3(s.x + 0.0, s.y + 0.0, s.z + 0.0),
-            model  = tonumber(s.model) or Config.FallbackModel,
-        }
-    end
-
-    print(('[drops] loaded %d clusters, %d stacks from DB'):format(#clusters, #stacks))
-end
+-- Keep function names so rest of code doesn't need changes
+local function DBEnsureSchema() end
+local function DBSaveCluster(_, _) end
+local function DBSaveStack(_, _, _) end
+local function DBDeleteStack(_) end
+local function DBDeleteCluster(_) end
+local function DBLoadAllDrops() end
 
 -- =========================================
 -- Helper that PRESERVES source when opening
@@ -616,7 +495,7 @@ end
 
 -- ==================================================
 -- Helpers for consuming from cluster stacks on move
--- (also updates persistence for changed/removed stacks)
+-- (DB calls are no-ops now)
 -- ==================================================
 local function sameMeta(a, b)
     local aj = json.encode(a or {})
@@ -642,9 +521,9 @@ local function consumeFromCluster(clusterId, name, meta, amount)
             if it.amount <= 0 then
                 cluster.stacks[stackId] = nil
                 TriggerClientEvent('itemdrops:client:removeProp', -1, stackId)
-                DBDeleteStack(stackId)
+                DBDeleteStack(stackId) -- no-op
             else
-                DBSaveStack(clusterId, stackId, s)
+                DBSaveStack(clusterId, stackId, s) -- no-op
             end
 
             if remaining == 0 then break end
@@ -652,14 +531,14 @@ local function consumeFromCluster(clusterId, name, meta, amount)
     end
 
     if clusterIsEmpty(cluster) then
-        DBDeleteCluster(clusterId)
+        DBDeleteCluster(clusterId) -- no-op
     end
 
     return remaining == 0
 end
 
 -- ================
--- DB warmup thread
+-- DB warmup thread (ONLY for named inventories; drops not persisted)
 -- ================
 
 CreateThread(function()
@@ -689,10 +568,10 @@ CreateThread(function()
                 if v.stacks then
                     for stackId, _ in pairs(v.stacks) do
                         TriggerClientEvent('itemdrops:client:removeProp', -1, stackId)
-                        DBDeleteStack(stackId)
+                        DBDeleteStack(stackId) -- no-op
                     end
                 end
-                DBDeleteCluster(k)
+                DBDeleteCluster(k) -- no-op
                 Drops[k] = nil
             end
         end
@@ -791,12 +670,8 @@ AddEventHandler('onResourceStart', function(resourceName)
     end
 end)
 
--- Ensure schema + load persisted drops after DB is up
-CreateThread(function()
-    Wait(250)
-    DBEnsureSchema()
-    DBLoadAllDrops()
-end)
+-- (REMOVED) Ensure schema + load persisted drops after DB is up
+-- Drops start empty each restart (no persistence)
 
 -- ==========
 -- Functions
@@ -852,16 +727,16 @@ RegisterNetEvent('qb-inventory:server:closeInventory', function(inventory)
             if Drops[inventory].stacks then
                 for stackId, _ in pairs(Drops[inventory].stacks) do
                     TriggerClientEvent('itemdrops:client:removeProp', -1, stackId)
-                    DBDeleteStack(stackId)
+                    DBDeleteStack(stackId) -- no-op
                 end
             end
-            DBDeleteCluster(inventory)
+            DBDeleteCluster(inventory) -- no-op
             Drops[inventory] = nil
         end
         return
     end
 
-    -- Named stash/inventory
+    -- Named stash/inventory (kept persisted)
     if not Inventories[inventory] then return end
     Inventories[inventory].isOpen = false
     MySQL.prepare(
@@ -947,7 +822,7 @@ end)
 RegisterNetEvent('qb-inventory:server:updateDrop', function(dropId, coords)
     if Drops[dropId] then
         Drops[dropId].coords = coords
-        DBSaveCluster(dropId, coords)
+        DBSaveCluster(dropId, coords) -- no-op
     end
 end)
 
@@ -998,7 +873,7 @@ QBCore.Functions.CreateCallback('qb-inventory:server:createDrop', function(sourc
                 isOpen      = false,
                 stacks      = {}                  -- stackId -> { item, coords, model }
             }
-            DBSaveCluster(clusterId, playerCoords) -- <-- ensures FK exists before stacks
+            DBSaveCluster(clusterId, playerCoords) -- no-op
         end
 
         -- Decide world model for this item
@@ -1009,10 +884,10 @@ QBCore.Functions.CreateCallback('qb-inventory:server:createDrop', function(sourc
         Drops[clusterId].stacks[stackId] = {
             item   = item,           -- keep full item (name, amount, type, info/metadata)
             coords = playerCoords,
-            model  = model,          -- for rebroadcast / persistence
+            model  = model,          -- for rebroadcast
         }
 
-        DBSaveStack(clusterId, stackId, Drops[clusterId].stacks[stackId])
+        DBSaveStack(clusterId, stackId, Drops[clusterId].stacks[stackId]) -- no-op
 
         -- Tell clients to spawn the prop for this stack
         TriggerClientEvent('itemdrops:client:spawnProp', -1, {
@@ -1114,7 +989,7 @@ QBCore.Functions.CreateCallback('qb-inventory:server:giveItem', function(source,
     end
 
     local hasItem = HasItem(source, item)
-    if not hasItem then
+        if not hasItem then
         cb(false)
         return
     end
@@ -1232,7 +1107,7 @@ RegisterNetEvent('qb-inventory:server:SetInventoryData', function(fromInventory,
                 stacks      = {}
             }
             Drops[dropId] = drop
-            if DBSaveCluster then DBSaveCluster(dropId, pcoords) end
+            DBSaveCluster(dropId, pcoords) -- no-op
         end
 
         local fromItem = getItem('player', src, fromSlot)
@@ -1268,7 +1143,7 @@ RegisterNetEvent('qb-inventory:server:SetInventoryData', function(fromInventory,
             if st.item and string.lower(st.item.name) == string.lower(fromItem.name)
                and sameMeta(st.item.metadata or st.item.info, fromItem.info) then
                 st.item.amount = (st.item.amount or 0) + moveAmount
-                if DBSaveStack then DBSaveStack(dropId, sid, st) end
+                DBSaveStack(dropId, sid, st) -- no-op
                 merged = true
                 break
             end
@@ -1287,7 +1162,7 @@ RegisterNetEvent('qb-inventory:server:SetInventoryData', function(fromInventory,
                 coords = pos,
                 model  = mdl,
             }
-            if DBSaveStack then DBSaveStack(dropId, stackId, drop.stacks[stackId]) end
+            DBSaveStack(dropId, stackId, drop.stacks[stackId]) -- no-op
 
             TriggerClientEvent('itemdrops:client:spawnProp', -1, {
                 stackId   = stackId,
@@ -1382,8 +1257,6 @@ RegisterNetEvent('qb-inventory:server:SetInventoryData', function(fromInventory,
     end
 end)
 
-
-
 -- ==========================================
 -- NEW: Single-stack pickup & open via target
 -- ==========================================
@@ -1407,11 +1280,11 @@ RegisterNetEvent('itemdrops:server:pickupStack', function(clusterId, stackId)
         -- remove stack & tell clients to delete the prop
         cluster.stacks[stackId] = nil
         TriggerClientEvent('itemdrops:client:removeProp', -1, stackId)
-        DBDeleteStack(stackId)
+        DBDeleteStack(stackId) -- no-op
 
         -- cleanup cluster if empty
         if clusterIsEmpty(cluster) then
-            DBDeleteCluster(clusterId)
+            DBDeleteCluster(clusterId) -- no-op
             Drops[clusterId] = nil
         end
     else
@@ -1419,7 +1292,7 @@ RegisterNetEvent('itemdrops:server:pickupStack', function(clusterId, stackId)
     end
 end)
 
--- Client reports the final grounded coords so we persist them (fixes floating after restart)
+-- Client reports the final grounded coords so we record them IN-MEMORY ONLY
 RegisterNetEvent('itemdrops:server:updateStackCoords', function(clusterId, stackId, coords)
     local src = source
     local cluster = Drops[clusterId]
@@ -1427,18 +1300,11 @@ RegisterNetEvent('itemdrops:server:updateStackCoords', function(clusterId, stack
     local s = cluster.stacks[stackId]
     if not s then return end
 
-    -- update memory
+    -- update memory (no DB persistence)
     s.coords = vector3((coords.x or 0.0) + 0.0, (coords.y or 0.0) + 0.0, (coords.z or 0.0) + 0.0)
-
-    -- persist new coords so next restart uses the grounded Z
-    if DBSaveStack then
-        DBSaveStack(clusterId, stackId, s)
-    end
 end)
 
-
 RegisterNetEvent('itemdrops:server:openCluster', function(clusterId)
-    print('[server] openCluster received from', source, 'clusterId=', clusterId)
     OpenDropFor(source, clusterId)
 end)
 
